@@ -6,12 +6,14 @@ ContextualMenu = {
 
     setContext: function(ctx){
         this.context = ctx;
-        UI.render(Template.contextualMenu.context);
+        Session.set('context', ctx);
         return this.context;
     },
 
     getContext: function(){
-        return this.context;
+        var ctx = Session.get('context');
+
+        return ctx;
     }
 };
 
@@ -26,7 +28,7 @@ Template.contextualMenu.helpers({
 
 var topics = {};
 
-jQuery.Topic = function( id ) {
+jQuery.PubSub = function( id ) {
     var callbacks,
         topic = id && topics[ id ];
     if ( !topic ) {
