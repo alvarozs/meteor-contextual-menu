@@ -2,10 +2,12 @@ ContextualMenu = ContextualMenu || {};
 
 ContextualMenu = {
 
-    context: "",
+    context: "INDEX",
 
     setContext: function(ctx){
         this.context = ctx;
+        UI.render(Template.contextualMenu.context);
+        return this.context;
     },
 
     getContext: function(){
@@ -19,6 +21,7 @@ Template.contextualMenu.helpers({
     }
 });
 
+// http://robertdickert.com/blog/2013/11/14/why-is-my-meteor-app-not-updating-reactively/
 // https://gist.github.com/addyosmani/1321768
 
 var topics = {};

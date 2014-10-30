@@ -18,6 +18,12 @@ if (Meteor.isClient) {
   Template.contextualMenu.events({
     'click #add': function(){
       $.Topic('add').publish("Button Add clicked!");
+    },
+    'click #context1': function(){
+      $.Topic('context').publish("CTX 1");
+    },
+    'click #context2': function(){
+      $.Topic('context').publish("CTX 2");
     }
   });
 
@@ -25,8 +31,8 @@ if (Meteor.isClient) {
     console.log("FN1: " + arg);
   };
 
-  var fn2 = function(arg){
-    console.log("FN2: " + arg);
+  var changeContext = function(ctx){
+    ContextualMenu.setContext(ctx);
   };
 
   var fn3 = function(arg){
@@ -36,8 +42,7 @@ if (Meteor.isClient) {
 
   Meteor.startup(function () {
     $.Topic('add').subscribe(fn1);
-    $.Topic('remove').subscribe(fn2);
-    $.Topic('view').subscribe(fn3);
+    $.Topic('context').subscribe(changeContext);
   });
 
 }
